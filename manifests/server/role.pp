@@ -85,7 +85,7 @@ define postgresql::server::role (
       command     => Sensitive("CREATE ROLE \"${username}\" ${password_sql} ${login_sql} ${createrole_sql} ${createdb_sql} ${superuser_sql} ${replication_sql} CONNECTION LIMIT ${connection_limit}"),
       unless      => "SELECT 1 FROM pg_roles WHERE rolname = '${username}'",
       require     => undef,
-      sensitive   => true,
+      #sensitive   => true,
     }
 
     postgresql_psql { "ALTER ROLE \"${username}\" ${superuser_sql}":
